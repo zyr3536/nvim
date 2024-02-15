@@ -21,6 +21,8 @@ tmap("<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
 local function nmap(lhs, rhs, opts)
   return map("n", lhs, rhs, opts)
 end
+nmap("<leader>rr", ":%SnipRun<cr>", { silent = true, desc = "run the file" })
+nmap("<leader>rc", ":SnipClose<cr>", { silent = true, desc = "clear snip info" })
 
 local function nunmap(lhs, rhs, opts)
   return unmap("n", lhs, rhs, opts)
@@ -33,3 +35,4 @@ end
 
 vmap("J", ":m '>+1<CR>gv=gv")
 vmap("K", ":m '<-2<CR>gv=gv")
+vmap("<leader>r", ":'<,'>SnipRun<cr>", { silent = true, desc = "snip run" })
