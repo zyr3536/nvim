@@ -21,12 +21,12 @@ tmap("<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
 local function nmap(lhs, rhs, opts)
   return map("n", lhs, rhs, opts)
 end
+local function nunmap(lhs, opts)
+  return unmap("n", lhs, opts)
+end
 nmap("<leader>rr", ":%SnipRun<cr>", { silent = true, desc = "run the file" })
 nmap("<leader>rc", ":SnipClose<cr>", { silent = true, desc = "clear snip info" })
-
-local function nunmap(lhs, rhs, opts)
-  return unmap("n", lhs, rhs, opts)
-end
+nunmap("<leader>uc")
 
 -- visual mode
 local function vmap(lhs, rhs, opts)
@@ -36,3 +36,4 @@ end
 vmap("J", ":m '>+1<CR>gv=gv")
 vmap("K", ":m '<-2<CR>gv=gv")
 vmap("<leader>r", ":'<,'>SnipRun<cr>", { silent = true, desc = "snip run" })
+vmap("<leader>C", ":'<,'>ChatGPTEditWithInstructions<cr>", { silent = true, desc = "chatgpt instructions" })
