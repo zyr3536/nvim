@@ -7,7 +7,8 @@ return {
       edit_with_instructions = {
         diff = false,
         keymaps = {
-          close = "<C-c>",
+          -- close = "<C-c>",
+          close = "q",
           accept = "<C-y>",
           toggle_diff = "<C-d>",
           toggle_settings = "<C-o>",
@@ -17,7 +18,7 @@ return {
         },
       },
       chat = {
-        welcome_message = "很高兴为您服务",
+        welcome_message = "成功便是站起来比倒下多一次",
         loading_text = "...fetching...",
         question_sign = "", -- 🙂
         answer_sign = "ﮧ", -- 🤖
@@ -39,7 +40,8 @@ return {
           },
         },
         keymaps = {
-          close = "<C-c>",
+          close = "q",
+          -- close = "<C-c>",
           yank_last = "<C-y>",
           yank_last_code = "<C-k>",
           scroll_up = "<C-u>",
@@ -152,7 +154,7 @@ return {
         model = "gpt-3.5-turbo",
         frequency_penalty = 0,
         presence_penalty = 0,
-        max_tokens = 300,
+        max_tokens = 800,
         temperature = 0,
         top_p = 1,
         n = 1,
