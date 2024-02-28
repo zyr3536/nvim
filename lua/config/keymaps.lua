@@ -5,35 +5,33 @@ local map = vim.keymap.set
 local unmap = vim.keymap.del
 
 -- insert mode
-local function imap(lhs, rhs, opts)
-  return map("i", lhs, rhs, opts)
-end
-
-imap("jj", "<ESC>")
+map("i", "jj", "<ESC>")
 
 -- term mode
-local function tmap(lhs, rhs, opts)
-  return map("t", lhs, rhs, opts)
-end
-tmap("<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
+map("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
 
 -- normal mode
-local function nmap(lhs, rhs, opts)
-  return map("n", lhs, rhs, opts)
-end
-local function nunmap(lhs, opts)
-  return unmap("n", lhs, opts)
-end
-nmap("<leader>rr", ":%SnipRun<cr>", { silent = true, desc = "run the file" })
-nmap("<leader>rc", ":SnipClose<cr>", { silent = true, desc = "clear snip info" })
-nunmap("<leader>uc")
+map("n", "q:", "<Nop>", { noremap = true })
+map("n", "<leader>rr", ":%SnipRun<cr>", { silent = true, desc = "run the file" })
+map("n", "<leader>rc", ":SnipClose<cr>", { silent = true, desc = "clear snip info" })
+unmap("n", "<leader>uc")
+-- unmap("n","C-//")
+unmap("n", "<leader>ft")
+unmap("n", "<leader>fT")
 
 -- visual mode
-local function vmap(lhs, rhs, opts)
-  return map("v", lhs, rhs, opts)
-end
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
+map("v", "<leader>r", ":'<,'>SnipRun<cr>", { silent = true, desc = "snip run" })
+map("v", "<leader>C", ":'<,'>ChatGPTEditWithInstructions<cr>", { silent = true, desc = "chatgpt instructions" })
 
-vmap("J", ":m '>+1<CR>gv=gv")
-vmap("K", ":m '<-2<CR>gv=gv")
-vmap("<leader>r", ":'<,'>SnipRun<cr>", { silent = true, desc = "snip run" })
-vmap("<leader>C", ":'<,'>ChatGPTEditWithInstructions<cr>", { silent = true, desc = "chatgpt instructions" })
+function _G.set_terminal_keymaps()
+  local opts = { buffer = 0 }
+  map("t", "<esc>", [[<C-\><C-n>]], opts)
+  map("t", "jj", [[<C-\><C-n>]], opts)
+  map("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+  map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+  map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+  map("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+  map("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+end
