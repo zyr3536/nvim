@@ -7,3 +7,4 @@ local opt = vim.opt
 opt.spell = false
 opt.wrap = true
 opt.winbar = "%=%f"
+vim.g.root_spec = { { ".git" }, "cwd" }
